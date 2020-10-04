@@ -1,10 +1,18 @@
 sonata_admin:
-    title: 'Sonata Admin'
+    title: 'EMERACTU'
     dashboard:
         blocks:
             - { type: sonata.admin.block.admin_list, position: left }
+    title_logo: "bundles/sonataadmin/logo_title.png"
+    security:
+        handler: sonata.admin.security.handler.role
 
+        role_admin: ROLE_ADMIN
+        role_super_admin: ROLE_SUPER_ADMIN
+    templates:
+        edit: core/edit.html.twig
 sonata_block:
     blocks:
         sonata.admin.block.admin_list:
             contexts: [admin]
+

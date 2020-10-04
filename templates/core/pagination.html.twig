@@ -1,0 +1,50 @@
+
+
+{% if nbreDePage>1 %}
+   <div class="container">
+        <div class="row center ">
+            <ul class="pagination-custom text-center">
+                {% set previous = page - 1 %}
+                {% set next = page + 1 %}
+                {% if page != 1 %}
+                    <li class="pag-link">
+                        <a href="{{ path(app.request.attributes.get('_route'), app.request.attributes.get('_route_params')|merge(app.request.query.all|merge({'page': previous }))) }}">
+                            <i class="fa fa-angle-double-left"></i>
+                        </a>
+                    </li>
+                {% endif %}
+                {% if page == 1 %}
+                    <li class="pag-link disabled">
+                        <span><i class="fa fa-angle-double-left"></span></i>
+                    </li>
+                {% endif %}
+                {% for p in range(1, nbreDePage) %}
+                    {% if p == page %}
+                        <li class="pag-link current">
+                            <span>{{p}}</span>
+                        </li>
+                    {% else %}
+                        <li class="pag-link">
+                            <a href="{{ path(app.request.attributes.get('_route'), app.request.attributes.get('_route_params')|merge(app.request.query.all|merge({'page': p }))) }}">{{p}}</a>
+                        </li>
+                    {% endif %}
+                {% endfor %}
+               
+                          {% if page != nbreDePage %}
+                <li class="pag-link">
+                    <a href="{{ path(app.request.attributes.get('_route'), app.request.attributes.get('_route_params')|merge(app.request.query.all|merge({'page': next }))) }}">
+                        <i class="fa fa-angle-double-right"></i>
+                    </a>
+                </li>
+                {% endif %}
+                {% if page == nbreDePage %}
+                <li class="pag-link disabled">
+                        <span><i class="fa fa-angle-double-right"></span></i>
+                    </li>
+                    {% endif %}
+            </ul>
+        </div>
+    </div>
+{% endif %}
+
+

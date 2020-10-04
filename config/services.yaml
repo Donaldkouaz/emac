@@ -28,3 +28,16 @@ services:
 
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones
+    admin.categorie:
+        class: App\Admin\CategorieAdmin
+        arguments: [~, App\Entity\Categorie, ~]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: admin, label: Categorie }
+        public: true
+
+    admin.projet:
+        class: App\Admin\ProjetAdmin
+        arguments: [~, App\Entity\Projet, ~]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: admin, label: Projet }
+        public: true

@@ -1,0 +1,62 @@
+/* ========== Pagination Styles ========== */
+
+.pagination>li>a,
+.pagination>li>span {
+    border-radius: 50% !important;
+    margin: 0 5px;
+}
+
+.pag-link {
+    display: inline-block;
+    vertical-align: middle;
+    padding: 5px;
+}
+
+.pag-link.disabled>span,
+.pag-link.current>span,
+.pag-link>a {
+    display: block;
+    border-radius: 50%;
+    font-size: 16px;
+    line-height: 1.42857;
+    margin-right: 5px;
+    padding: 10px 17px;
+    position: relative;
+    text-decoration: none;
+    border: none;
+    -webkit-transition: all 0.3s ease-in-out;
+    -moz-transition: all 0.3s ease-in-out;
+    -o-transition: all 0.3s ease-in-out;
+    -ms-transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
+}
+
+.pag-link:active>a,
+.pag-link:hover>a,
+.pag-link:focus>a,
+.pag-link.current>span {
+    font-size: 24px;
+    font-weight: bold;
+    padding: 10px 20px;
+}
+
+.pag-link>a {
+    background-color: #166ccf;
+    color: #fff;
+    cursor: pointer;
+}
+
+.pag-link.disabled>span,
+.pag-link.current>span {
+    background-color: #1bbd36;
+    color: #fff;
+    cursor: inherit;
+}
+
+.pag-link:active>a,
+.pag-link:hover>a,
+.pag-link:focus>a {
+    background-color: #1bbd36!important;
+    border-color: #1bbd36;
+    color: #fff;
+}

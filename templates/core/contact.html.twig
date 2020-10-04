@@ -1,0 +1,139 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+	Contact
+	{{ parent() }}
+{% endblock %}
+
+{% block body %}
+	<main
+		id="main">
+
+		<!-- ======= Breadcrumbs ======= -->
+		<section id="breadcrumbs" class="breadcrumbs">
+			<div class="container">
+
+				<div class="d-flex justify-content-between align-items-center">
+					<h2>
+						EMERGENCE ET ACTUALISATION
+					</h2>
+					<ol>
+						<li>
+							<a href="{{path("index")}}">
+								Accueil
+							</a>
+						</li>
+						<li>
+							Contact
+						</li>
+					</ol>
+				</div>
+
+			</div>
+		</section>
+		<!-- End Breadcrumbs -->
+
+		<!-- ======= Contact Section ======= -->
+		<div class="map-section">
+			<iframe style="border:0; width: 100%; height: 350px;" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d4259.324638929448!2d2.3953793149412737!3d6.388320326491973!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1023554fb8493e19%3A0x6da5b70bc2a0f056!2sPRH%20-BENIN!5e1!3m2!1sfr!2sbj!4v1600578138118!5m2!1sfr!2sbj" frameborder="0" allowfullscreen></iframe>
+		</div>
+
+		<section id="contact" class="contact">
+			<div class="container">
+
+				<div class="row justify-content-center" data-aos="fade-up">
+
+					<div class="col-lg-10">
+
+						<div class="info-wrap">
+							<div class="row">
+								<div class="col-lg-4 info">
+									<i class="icofont-google-map"></i>
+									<h4>
+										Adresse:
+									</h4>
+									<p>
+										Lot 1806 Fifadji, Yénawa
+										<br>
+										Cotonou
+									</p>
+								</div>
+
+								<div class="col-lg-4 info mt-4 mt-lg-0">
+									<i class="icofont-envelope"></i>
+									<h4>
+										E-mail:
+									</h4>
+									<p>
+										maurice@emeractu.org
+										<br>
+										info@emeractu.org
+									</p>
+								</div>
+
+								<div class="col-lg-4 info mt-4 mt-lg-0">
+									<i class="icofont-phone"></i>
+									<h4>
+										Téléphones:
+									</h4>
+									<p>
+										+229 90 91 72 92
+										<br>
+										+229 21 03 09 44
+									</p>
+								</div>
+							</div>
+						</div>
+
+					</div>
+
+				</div>
+
+				<div class="row mt-5 justify-content-center" data-aos="fade-up">
+					<div class="col-lg-10">
+						<form action="forms/contact.php" method="post" role="form" class="php-email-form">
+							<div class="form-row">
+								<div class="col-md-6 form-group">
+									<input type="text" name="name" class="form-control" id="name" placeholder="Votre nom" data-rule="minlen:4" data-msg="Votre nom doit comporter au moins 4 lettres"/>
+									<div class="validate"></div>
+								</div>
+								<div class="col-md-6 form-group">
+									<input type="email" class="form-control" name="email" id="email" placeholder="Votre addresse e-mail" data-rule="email" data-msg="Veuillez entrer une addresse e-mail valide s'il vous plait"/>
+									<div class="validate"></div>
+								</div>
+							</div>
+							<div class="form-group">
+								<input type="text" class="form-control" name="subject" id="subject" placeholder="Sujet" data-rule="minlen:4" data-msg="Votre message doit comporter au moins 8 lettres"/>
+								<div class="validate"></div>
+							</div>
+							<div class="form-group">
+								<textarea class="form-control" name="message" rows="5" data-rule="required" data-msg="Ecrivez nous quelques chose s'il vous plait" placeholder="Message"></textarea>
+								<div class="validate"></div>
+							</div>
+							<div class="mb-3">
+								<div class="loading">
+									En cours d'envoi
+								</div>
+								<div class="error-message"></div>
+								<div class="sent-message">
+									Votre message a bien été envoyé. Merci
+								</div>
+							</div>
+							<div class="text-center">
+								<button type="submit">
+									Envoyer le message
+								</button>
+							</div>
+						</form>
+					</div>
+
+				</div>
+
+			</div>
+		</section>
+		<!-- End Contact Section -->
+
+	</main>
+	<!-- End #main -->
+
+{% endblock %}
