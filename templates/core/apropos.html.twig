@@ -85,22 +85,22 @@
           <h2>TEMOIGNAGES</strong></h2>
         </div>
         <div class="row">
-
+{% for tem in tem if tem.active %}
           <div class="col-lg-6" data-aos="fade-up">
-            <div class="testimonial-item">
-              <img src="assets/img/testimonials/testimonials-1.jpg" class="testimonial-img" alt="">
-              <h3>Saul Goodman</h3>
-              <h4>Ceo &amp; Founder</h4>
+            <div class="testimonial-item mt-4">
+              <img src="{{ vich_uploader_asset(tem, 'imageFile') | imagine_filter ('profil') }}" class="testimonial-img" alt="">
+              <h3>{{tem.nom}}</h3>
+              <h4>{{tem.profession}}</h4>
               <p>
                 <i class="bx bxs-quote-alt-left quote-icon-left"></i>
-                Proin iaculis purus consequat sem cure digni ssim donec porttitora entum suscipit rhoncus. Accusantium quam, ultricies eget id, aliquam eget nibh et. Maecen aliquam, risus at semper.
+                {{tem.temoignage|truncate(300, true, " ... ") | raw}}
                 <i class="bx bxs-quote-alt-right quote-icon-right"></i>
               </p>
             </div>
           </div>
-
-          <div class="col-lg-6" data-aos="fade-up" data-aos-delay="100">
-            <div class="testimonial-item mt-4 mt-lg-0">
+{% endfor %}
+          {# <div class="col-lg-6" data-aos="fade-up" data-aos-delay="100">
+            <div class="testimonial-item mt-4">
               <img src="assets/img/testimonials/testimonials-2.jpg" class="testimonial-img" alt="">
               <h3>Sara Wilsson</h3>
               <h4>Designer</h4>
@@ -162,7 +162,7 @@
                 <i class="bx bxs-quote-alt-right quote-icon-right"></i>
               </p>
             </div>
-          </div>
+          </div> #}
 
         </div>
 

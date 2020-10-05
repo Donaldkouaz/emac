@@ -41,3 +41,10 @@ services:
         tags:
             - { name: sonata.admin, manager_type: orm, group: admin, label: Projet }
         public: true
+
+    admin.temoignages:
+        class: App\Admin\TemoignagesAdmin
+        arguments: [~, App\Entity\Temoignages, ~]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: admin, label: Temoignages }
+        public: true

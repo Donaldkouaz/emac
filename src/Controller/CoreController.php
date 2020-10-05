@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Projet;
+use App\Entity\Temoignages;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -82,8 +83,12 @@ class CoreController extends Controller
      */
     public function apropos()
     {
+
+        $em = $this->getDoctrine()->getManager();
+        $temoignages = $em->getRepository(Temoignages::class)->findAll();
+
         return $this->render('core/apropos.html.twig', [
-            'controller_name' => 'CoreController',
+            'tem' => $temoignages,
         ]);
     }
 

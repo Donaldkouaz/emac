@@ -1,7 +1,0 @@
-services:
-    admin.projet:
-        class: App\Admin\ProjetAdmin
-        arguments: [~, App\Entity\Projet, ~]
-        tags:
-            - { name: sonata.admin, manager_type: orm, group: admin, label: Projet }
-        public: true

@@ -31,9 +31,9 @@
         <div class="portfolio-details-container">
 
           <div class="owl-carousel portfolio-details-carousel">
-         {% if projet.image1.name %}<img src="{{ vich_uploader_asset(projet, 'image1File') }}" class="img-fluid" alt="{{ projet.slug }}" />{% endif %}
-         {% if projet.image2.name %}<img src="{{ vich_uploader_asset(projet, 'image2File') }}" class="img-fluid" alt="{{ projet.slug }}" />{% endif %}
-         {% if projet.image3.name %}<img src="{{ vich_uploader_asset(projet, 'image3File') }}" class="img-fluid" alt="{{ projet.slug }}" />{% endif %}
+         {% if projet.image1.name %}<img src="{{ vich_uploader_asset(projet, 'image1File')| imagine_filter ('images_projets') }}" class="img-fluid" alt="{{ projet.slug }}" />{% endif %}
+         {% if projet.image2.name %}<img src="{{ vich_uploader_asset(projet, 'image2File')| imagine_filter ('images_projets') }}" class="img-fluid" alt="{{ projet.slug }}" />{% endif %}
+         {% if projet.image3.name %}<img src="{{ vich_uploader_asset(projet, 'image3File')| imagine_filter ('images_projets') }}" class="img-fluid" alt="{{ projet.slug }}" />{% endif %}
           </div>
 
           <div class="portfolio-info">
