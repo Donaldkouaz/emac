@@ -25,7 +25,7 @@
 							</a>
 						</li>
 						<li>
-							Produits
+							Projets
 						</li>
 					</ol>
 				</div>
@@ -45,7 +45,7 @@
 
         <div class = "row">
           {% for projet in projets if projet.active %}
-		  <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4" data-aos="zoom-in" data-aos-delay="300">
+		  <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4" data-aos="zoom-in" data-aos-delay="{{loop.index0 * 10}}">
             <div class="card-content">
                     <div class="card-img">
 					{% if projet.image1.name %}<img src="{{ vich_uploader_asset(projet, 'image1File') | imagine_filter ('vignettes_projets') }}" class="img-fluid" alt="{{ projet.slug }}" />{% endif %}                        

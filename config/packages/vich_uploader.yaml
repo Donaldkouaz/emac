@@ -3,11 +3,41 @@ vich_uploader:
 
     mappings:
         projets:
-            uri_prefix: images/projets
+            uri_prefix: /images/projets
             upload_destination: '%kernel.project_dir%/public/images/projets'
             namer: Vich\UploaderBundle\Naming\SmartUniqueNamer
+            inject_on_load:     true
+            delete_on_update:   true
+            delete_on_remove:   true
 
         temoignage:
-            uri_prefix: images/temoignages
+            uri_prefix: /images/temoignages
             upload_destination: '%kernel.project_dir%/public/images/temoignages'
             namer: Vich\UploaderBundle\Naming\SmartUniqueNamer
+            inject_on_load:     true
+            delete_on_update:   true
+            delete_on_remove:   true
+
+        services:
+            uri_prefix: /images/services
+            upload_destination: '%kernel.project_dir%/public/images/services'
+            namer: Vich\UploaderBundle\Naming\SmartUniqueNamer
+            inject_on_load:     true
+            delete_on_update:   true
+            delete_on_remove:   true
+
+        logo:
+            uri_prefix: /images/logo
+            upload_destination: '%kernel.project_dir%/public/images/logo'
+            namer: Vich\UploaderBundle\Naming\SmartUniqueNamer
+            inject_on_load:     true
+            delete_on_update:   true
+            delete_on_remove:   true
+
+        logo_partenaires:
+            uri_prefix: /images/logo
+            upload_destination: '%kernel.project_dir%/public/images/logo'
+            namer: Vich\UploaderBundle\Naming\SmartUniqueNamer
+            inject_on_load:     true
+            delete_on_update:   true
+            delete_on_remove:   true

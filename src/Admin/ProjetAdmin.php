@@ -33,12 +33,20 @@ final class ProjetAdmin extends AbstractAdmin
 
     protected function configureListFields(ListMapper $listMapper): void
     {
+        
         $listMapper
             ->addIdentifier('nom')
             ->add('description')
             ->add('auteur')
-            ->add('categorie')
-            ->add('active')
+            ->add('categorie', null, [
+                'editable' => true
+            ])
+            ->add('active', null, [
+                'editable' => true
+            ])
+            ->add('avant', null, [
+                'editable' => true
+            ])
             ->add('_action', null, [
                 'actions' => [
                     'show' => [],
@@ -49,6 +57,24 @@ final class ProjetAdmin extends AbstractAdmin
 
     protected function configureFormFields(FormMapper $formMapper): void
     {
+
+        /* // get the current Image instance
+        $image = $this->getSubject()->getImage1();
+        
+
+        // use $fileFormOptions so we can add other options to the field
+        $fileFormOptions = ['required' => false];
+        if ($image) {
+            // get the container so the full path to the image can be set
+
+            $container = $this->getConfigurationPool()->getContainer();
+            $path = $container->get('vich_uploader.templating.helper.uploader_helper')->asset($this->getSubject(), 'image1File');
+            $fullPath = $container->get('request_stack')->getCurrentRequest()->getBasePath().'/'.$path;
+            // add a 'help' option containing the preview's img tag
+            $fileFormOptions['help'] = '<img src="'.$fullPath.'" class="admin-preview"/>';
+            $fileFormOptions['help_html'] = true;
+        } */
+
         $formMapper
             ->add('nom')
             ->add('description', TextareaType::class, array('attr' => array('class' => 'ckeditor')))
@@ -60,16 +86,23 @@ final class ProjetAdmin extends AbstractAdmin
             ->add('avant')
             ->add('auteur')
             ->add('image1File', VichImageType::class, [
-                'required' => false,])
+                'required' => false,
+                'attr' => array('style' => 'max-height: 200px;
+                max-width: 200px;')])
             ->add('image2File', VichImageType::class, [
-                    'required' => false,])
+                    'required' => false,
+                    'attr' => array('style' => 'max-height: 200px;
+                        max-width: 200px;')])
             ->add('image3File', VichImageType::class, [
-                        'required' => false,])
+                        'required' => false,
+                        'attr' => array('style' => 'max-height: 200px;
+                        max-width: 200px;'),])
             ->add('contact')
             ->add('categorie', ModelType::class, array(
                 'class' => 'App\Entity\categorie',
                 'property' => 'nom',
             ))
+            
             ;
     }
 

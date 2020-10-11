@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\ProjetRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\DateType;
 use Doctrine\ORM\Mapping as ORM;
 use Cocur\Slugify\Slugify;
@@ -122,6 +124,11 @@ class Projet
      */
     private $image3;
 
+    /**
+     * @ORM\ManyToMany(targetEntity=Service::class, inversedBy="projets")
+     */
+    private $ServicesLies;
+
     public function __construct() {
         $this->datecreation = new \DateTime;
         $this->active = false;
@@ -129,6 +136,7 @@ class Projet
         $this->image1 = new EmbeddedFile();
         $this->image2 = new EmbeddedFile();
         $this->image3 = new EmbeddedFile();
+        $this->ServicesLies = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -348,6 +356,32 @@ class Projet
     public function getImage3File(): ?File
     {
         return $this->image3File;
+    }
+
+    /**
+     * @return Collection|Service[]
+     */
+    public function getServicesLies(): Collection
+    {
+        return $this->ServicesLies;
+    }
+
+    public function addServicesLy(Service $servicesLy): self
+    {
+        if (!$this->ServicesLies->contains($servicesLy)) {
+            $this->ServicesLies[] = $servicesLy;
+        }
+
+        return $this;
+    }
+
+    public function removeServicesLy(Service $servicesLy): self
+    {
+        if ($this->ServicesLies->contains($servicesLy)) {
+            $this->ServicesLies->removeElement($servicesLy);
+        }
+
+        return $this;
     }
 
 }

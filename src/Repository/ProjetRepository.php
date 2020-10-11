@@ -49,17 +49,38 @@ class ProjetRepository extends ServiceEntityRepository
     }
     */
 
-    public function rechercheTout($nbreDePlanParPage, $page)
+    public function rechercheTout($nbreDeProjetParPage, $page)
     {
     $qb = $this->createQueryBuilder('p')
+                ->andWhere('p.active = :val')
+                ->setParameter('val', true)
                 ->orderBy('p.datecreation','DESC');
     
     $qb
     
     // On définit le projet à partir de laquelle commencer la liste
-    ->setFirstResult(($page - 1) * $nbreDePlanParPage)
+    ->setFirstResult(($page - 1) * $nbreDeProjetParPage)
     // Ainsi que le nombre de projet à afficher sur une page
-    ->setMaxResults($nbreDePlanParPage)
+    ->setMaxResults($nbreDeProjetParPage)
+    ->getQuery()
+;
+
+// Enfin, on retourne l'objet Paginator correspondant à la requête construite
+return new Paginator($qb, true);
+    }
+
+    public function rechercheAvant($nbreDeProjet)
+    {
+    $qb = $this->createQueryBuilder('p')
+                ->andWhere('p.active = :val')
+                ->setParameter('val', true)
+                ->orderBy('p.avant','DESC');
+    
+    $qb
+    
+
+    // Ainsi que le nombre de projet à afficher sur une page
+    ->setMaxResults($nbreDeProjet)
     ->getQuery()
 ;
 

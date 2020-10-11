@@ -9,44 +9,19 @@
 
       <div class="carousel-inner" role="listbox">
 
-        <!-- Slide 1 -->
-        <div class="carousel-item active" style="background-image: url(assets/img/slide/slide-1.jpg);">
-          <div class="carousel-container">
-            <div class="carousel-content animate__animated animate__fadeInUp">
-              <h2>EMERGENCE DES TALENTS</h2>
-              <p>valoriser les habitants du Nord à travers leurs initiatives et leurs idées, renforcer l’accompagnement de proximité aux porteurs de projet et faire émerger des projets créateurs d’emploi et de nouveaux services.</p>
-              <div class="text-center"><a href="" class="btn-get-started">En savoir plus</a></div>
-            </div>
-          </div>
-        </div>
+      {% for service in services %}  
 
-        <!-- Slide 2 -->
-        <div class="carousel-item" style="background-image: url(assets/img/slide/slide-2.jpg);">
+      <div class="carousel-item {% if loop.index == 1 %}active{% endif %}" style="background-image: url({% if service.imageAvantFile %} {{ vich_uploader_asset(service, 'imageAvantFile') | imagine_filter ('images_slider') }}{% else %}{{ vich_uploader_asset(service, 'imageFile') | imagine_filter ('images_slider') }}{% endif %});">
           <div class="carousel-container">
             <div class="carousel-content animate__animated animate__fadeInUp">
-              <h2>BUSINESS WAKE UP</h2>
-              <p>Reveillez le talent d'entrepreneur qui sommeil en vous.
-              L’esprit d’entreprendre et les vocations
-entrepreneuriales se développent vraiment et transforment
-la vie d’un jeune quand ils
-s’ancrent sur un profond désir
-de changement personnel et
-d’ascension sociale. </p>
-              <div class="text-center"><a href="" class="btn-get-started">En savoir plus</a></div>
+              <h2>{{service.nom|upper}}</h2>
+              <p>{{service.description}}</p>
+              <div class="text-center"><a href="{{path('service', { 'service_slug': service.slug })}}" class="btn-get-started">En savoir plus</a></div>
             </div>
           </div>
         </div>
-
-        <!-- Slide 3 -->
-        <div class="carousel-item" style="background-image: url(assets/img/slide/slide-3.jpg);">
-          <div class="carousel-container">
-            <div class="carousel-content animate__animated animate__fadeInUp">
-              <h2>ACTUALISATION DES COMPETENCES</h2>
-              <p>Ut velit est quam dolor ad a aliquid qui aliquid. Sequi ea ut et est quaerat sequi nihil ut aliquam. Occaecati alias dolorem mollitia ut. Similique ea voluptatem. Esse doloremque accusamus repellendus deleniti vel. Minus et tempore modi architecto.</p>
-              <div class="text-center"><a href="" class="btn-get-started">En savoir plus</a></div>
-            </div>
-          </div>
-        </div>
+        
+      {% endfor %}
 
       </div>
 
@@ -78,23 +53,10 @@ d’ascension sociale. </p>
         <div class="row content">
           <div class="col-lg-6" data-aos="fade-right">
             <h2>NOTRE MISSION</h2>
-            <h3>PROMOUVOIR L'EMERGENCE ET L'ACTUALISATION DES TALENTS</h3>
+            <h5>{{parametres.mission|truncate(300, true, " ... ") | raw}}</h5>
           </div>
           <div class="col-lg-6 pt-4 pt-lg-0" data-aos="fade-left">
-            <p>
-              Ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
-              velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-              culpa qui officia deserunt mollit anim id est laborum
-            </p>
-            <ul>
-              <li><i class="ri-check-double-line"></i> Ullamco laboris nisi ut aliquip ex ea commodo consequa</li>
-              <li><i class="ri-check-double-line"></i> Duis aute irure dolor in reprehenderit in voluptate velit</li>
-              <li><i class="ri-check-double-line"></i> Ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in</li>
-            </ul>
-            <p class="font-italic">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
-              magna aliqua.
-            </p>
+            {{parametres.apropos|truncate(600, true, " ... ") | raw}}
           </div>
         </div>
 
@@ -106,100 +68,26 @@ d’ascension sociale. </p>
       <div class="container" data-aos="fade-up">
 
         <div class="section-title">
-          <h2>QUELQUES PROJETS REALISES</strong></h2>
-          <p>Laborum repudiandae omnis voluptatum consequatur mollitia ea est voluptas ut</p>
+          <h2>PROJETS REALISES</strong></h2>
+          <p>Quelques projets ayant vus le jour avec l'appui de Emergence et Actualisation</p>
         </div>
 
         <div class="row">
-          <div class="col-lg-4 col-md-6 d-flex align-items-stretch" data-aos="zoom-in" data-aos-delay="100">
+      
+  {% for projet in projets if projet.active and projet.avant %}
+		  <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4" data-aos="zoom-in" data-aos-delay="{{loop.index0 * 10}}">
             <div class="card-content">
                     <div class="card-img">
-                        <img src="https://placeimg.com/380/230/clothes" alt="">
-                        
+					{% if projet.image1.name %}<img src="{{ vich_uploader_asset(projet, 'image1File') | imagine_filter ('vignettes_projets') }}" class="img-fluid" alt="{{ projet.slug }}" />{% endif %}                        
                     </div>
                     <div class="card-desc">
-                        <h3>Titre du produit</h3>
-                        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Laboriosam, voluptatum! Dolor quo, perspiciatis
-                            voluptas totam</p>
-                            <a href="#" class="btn-card">Voir plus</a>   
+                        <h3> {{projet.nom}} </h3>
+                        <p>{{projet.description|truncate(100, true, " ... ") | raw}}</p>
+                            <a href="{{path('projet', { 'projet_slug': projet.slug })}}" class="btn-card">Voir plus</a>   
                     </div>
                 </div>
           </div>
-
-          <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4 mt-md-0" data-aos="zoom-in" data-aos-delay="200">
-            <div class="card-content">
-                    <div class="card-img">
-                        <img src="https://placeimg.com/380/230/food" alt="">
-                        
-                    </div>
-                    <div class="card-desc">
-                        <h3>Titre du produit</h3>
-                        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Laboriosam, voluptatum! Dolor quo, perspiciatis
-                            voluptas totam</p>
-                            <a href="#" class="btn-card">Voir plus</a>   
-                    </div>
-                </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4 mt-lg-0" data-aos="zoom-in" data-aos-delay="300">
-            <div class="card-content">
-                    <div class="card-img">
-                        <img src="https://placeimg.com/380/230/animal" alt="">
-                        
-                    </div>
-                    <div class="card-desc">
-                        <h3>Titre du produit</h3>
-                        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Laboriosam, voluptatum! Dolor quo, perspiciatis
-                            voluptas totam</p>
-                            <a href="#" class="btn-card">Voir plus</a>   
-                    </div>
-                </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4" data-aos="zoom-in" data-aos-delay="100">
-            <div class="card-content">
-                    <div class="card-img">
-                        <img src="https://placeimg.com/380/230/computer" alt="">
-                        
-                    </div>
-                    <div class="card-desc">
-                        <h3>Titre du produit</h3>
-                        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Laboriosam, voluptatum! Dolor quo, perspiciatis
-                            voluptas totam</p>
-                            <a href="#" class="btn-card">Voir plus</a>   
-                    </div>
-                </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4" data-aos="zoom-in" data-aos-delay="200">
-            <div class="card-content">
-                    <div class="card-img">
-                        <img src="https://placeimg.com/380/230/phone" alt="">
-                        
-                    </div>
-                    <div class="card-desc">
-                        <h3>Titre du produit</h3>
-                        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Laboriosam, voluptatum! Dolor quo, perspiciatis
-                            voluptas totam</p>
-                            <a href="#" class="btn-card">Voir plus</a>   
-                    </div>
-                </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4" data-aos="zoom-in" data-aos-delay="300">
-            <div class="card-content">
-                    <div class="card-img">
-                        <img src="https://placeimg.com/380/230/nature" alt="">
-                        
-                    </div>
-                    <div class="card-desc">
-                        <h3>Titre du produit</h3>
-                        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Laboriosam, voluptatum! Dolor quo, perspiciatis
-                            voluptas totam</p>
-                            <a href="#" class="btn-card">Voir plus</a>   
-                    </div>
-                </div>
-          </div>
+          {% endfor %}
 
         </div>
 
@@ -209,179 +97,27 @@ d’ascension sociale. </p>
 
     <!-- End Services Section -->
 
-    {# <!-- ======= Portfolio Section ======= -->
-    <section id="portfolio" class="portfolio">
-      <div class="container">
-
-        <div class="section-title" data-aos="fade-up">
-          <h2>Portfolio</h2>
-        </div>
-
-        <div class="row" data-aos="fade-up">
-          <div class="col-lg-12 d-flex justify-content-center">
-            <ul id="portfolio-flters">
-              <li data-filter="*" class="filter-active">All</li>
-              <li data-filter=".filter-app">App</li>
-              <li data-filter=".filter-card">Card</li>
-              <li data-filter=".filter-web">Web</li>
-            </ul>
-          </div>
-        </div>
-
-        <div class="row portfolio-container" data-aos="fade-up">
-
-          <div class="col-lg-4 col-md-6 portfolio-item filter-app">
-            <img src="assets/img/portfolio/portfolio-1.jpg" class="img-fluid" alt="">
-            <div class="portfolio-info">
-              <h4>App 1</h4>
-              <p>App</p>
-              <a href="assets/img/portfolio/portfolio-1.jpg" data-gall="portfolioGallery" class="venobox preview-link" title="App 1"><i class="bx bx-plus"></i></a>
-              <a href="portfolio-details.html" class="details-link" title="More Details"><i class="bx bx-link"></i></a>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6 portfolio-item filter-web">
-            <img src="assets/img/portfolio/portfolio-2.jpg" class="img-fluid" alt="">
-            <div class="portfolio-info">
-              <h4>Web 3</h4>
-              <p>Web</p>
-              <a href="assets/img/portfolio/portfolio-2.jpg" data-gall="portfolioGallery" class="venobox preview-link" title="Web 3"><i class="bx bx-plus"></i></a>
-              <a href="portfolio-details.html" class="details-link" title="More Details"><i class="bx bx-link"></i></a>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6 portfolio-item filter-app">
-            <img src="assets/img/portfolio/portfolio-3.jpg" class="img-fluid" alt="">
-            <div class="portfolio-info">
-              <h4>App 2</h4>
-              <p>App</p>
-              <a href="assets/img/portfolio/portfolio-3.jpg" data-gall="portfolioGallery" class="venobox preview-link" title="App 2"><i class="bx bx-plus"></i></a>
-              <a href="portfolio-details.html" class="details-link" title="More Details"><i class="bx bx-link"></i></a>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6 portfolio-item filter-card">
-            <img src="assets/img/portfolio/portfolio-4.jpg" class="img-fluid" alt="">
-            <div class="portfolio-info">
-              <h4>Card 2</h4>
-              <p>Card</p>
-              <a href="assets/img/portfolio/portfolio-4.jpg" data-gall="portfolioGallery" class="venobox preview-link" title="Card 2"><i class="bx bx-plus"></i></a>
-              <a href="portfolio-details.html" class="details-link" title="More Details"><i class="bx bx-link"></i></a>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6 portfolio-item filter-web">
-            <img src="assets/img/portfolio/portfolio-5.jpg" class="img-fluid" alt="">
-            <div class="portfolio-info">
-              <h4>Web 2</h4>
-              <p>Web</p>
-              <a href="assets/img/portfolio/portfolio-5.jpg" data-gall="portfolioGallery" class="venobox preview-link" title="Web 2"><i class="bx bx-plus"></i></a>
-              <a href="portfolio-details.html" class="details-link" title="More Details"><i class="bx bx-link"></i></a>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6 portfolio-item filter-app">
-            <img src="assets/img/portfolio/portfolio-6.jpg" class="img-fluid" alt="">
-            <div class="portfolio-info">
-              <h4>App 3</h4>
-              <p>App</p>
-              <a href="assets/img/portfolio/portfolio-6.jpg" data-gall="portfolioGallery" class="venobox preview-link" title="App 3"><i class="bx bx-plus"></i></a>
-              <a href="portfolio-details.html" class="details-link" title="More Details"><i class="bx bx-link"></i></a>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6 portfolio-item filter-card">
-            <img src="assets/img/portfolio/portfolio-7.jpg" class="img-fluid" alt="">
-            <div class="portfolio-info">
-              <h4>Card 1</h4>
-              <p>Card</p>
-              <a href="assets/img/portfolio/portfolio-7.jpg" data-gall="portfolioGallery" class="venobox preview-link" title="Card 1"><i class="bx bx-plus"></i></a>
-              <a href="portfolio-details.html" class="details-link" title="More Details"><i class="bx bx-link"></i></a>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6 portfolio-item filter-card">
-            <img src="assets/img/portfolio/portfolio-8.jpg" class="img-fluid" alt="">
-            <div class="portfolio-info">
-              <h4>Card 3</h4>
-              <p>Card</p>
-              <a href="assets/img/portfolio/portfolio-8.jpg" data-gall="portfolioGallery" class="venobox preview-link" title="Card 3"><i class="bx bx-plus"></i></a>
-              <a href="portfolio-details.html" class="details-link" title="More Details"><i class="bx bx-link"></i></a>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6 portfolio-item filter-web">
-            <img src="assets/img/portfolio/portfolio-9.jpg" class="img-fluid" alt="">
-            <div class="portfolio-info">
-              <h4>Web 3</h4>
-              <p>Web</p>
-              <a href="assets/img/portfolio/portfolio-9.jpg" data-gall="portfolioGallery" class="venobox preview-link" title="Web 3"><i class="bx bx-plus"></i></a>
-              <a href="portfolio-details.html" class="details-link" title="More Details"><i class="bx bx-link"></i></a>
-            </div>
-          </div>
-
-        </div>
-
-      </div>
-    </section><!-- End Portfolio Section --> #}
+    
 
     <!-- ======= Our Clients Section ======= -->
     <section id="clients" class="clients">
       <div class="container" data-aos="fade-up">
 
         <div class="section-title">
-          <h2>QUELQUES PARTENAIRES</h2>
+          <h2>PARTENAIRES</h2>
         </div>
 
         <div class="row no-gutters clients-wrap clearfix" data-aos="fade-up">
 
-          <div class="col-lg-3 col-md-4 col-6">
-            <div class="client-logo">
-              <img src="assets/img/clients/client-1.png" class="img-fluid" alt="">
-            </div>
-          </div>
+        {% for partenaire in partenaires %}
 
-          <div class="col-lg-3 col-md-4 col-6">
+        <div class="col-lg-3 col-md-4 col-6">
             <div class="client-logo">
-              <img src="assets/img/clients/client-2.png" class="img-fluid" alt="">
+              <img src="{{ vich_uploader_asset(partenaire, 'imageFile') | imagine_filter ('logo_partenaire') }}" class="img-fluid" alt="">
             </div>
           </div>
-
-          <div class="col-lg-3 col-md-4 col-6">
-            <div class="client-logo">
-              <img src="assets/img/clients/client-12.png" class="img-fluid" alt="">
-            </div>
-          </div>
-
-          <div class="col-lg-3 col-md-4 col-6">
-            <div class="client-logo">
-              <img src="assets/img/clients/client-10.png" class="img-fluid" alt="">
-            </div>
-          </div>
-
-          <div class="col-lg-3 col-md-4 col-6">
-            <div class="client-logo">
-              <img src="assets/img/clients/client-5.png" class="img-fluid" alt="">
-            </div>
-          </div>
-
-          <div class="col-lg-3 col-md-4 col-6">
-            <div class="client-logo">
-              <img src="assets/img/clients/client-6.png" class="img-fluid" alt="">
-            </div>
-          </div>
-
-          <div class="col-lg-3 col-md-4 col-6">
-            <div class="client-logo">
-              <img src="assets/img/clients/client-7.png" class="img-fluid" alt="">
-            </div>
-          </div>
-
-          <div class="col-lg-3 col-md-4 col-6">
-            <div class="client-logo">
-              <img src="assets/img/clients/client-8.png" class="img-fluid" alt="">
-            </div>
-          </div>
+          
+        {% endfor %}
 
         </div>
 

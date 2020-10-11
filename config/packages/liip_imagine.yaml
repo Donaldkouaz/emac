@@ -35,12 +35,21 @@ liip_imagine:
                 # to crop the image when the size ratio of the input differs
                 thumbnail: { size: [290, 180], mode: outbound }
 
+        vignettes_services:
+
+            # list of transformations to apply (the "filters")
+            filters:
+
+                # create a thumbnail: set size to 540x340 and use the "outbound" mode
+                # to crop the image when the size ratio of the input differs
+                thumbnail: { size: [540, 340], mode: outbound }
+
         images_projets:
         
             # list of transformations to apply (the "filters")
             filters:
 
-                # create a thumbnail: set size to 290x180 and use the "outbound" mode
+                # create a thumbnail: set size to 1045x605 and use the "outbound" mode
                 # to crop the image when the size ratio of the input differs
                 thumbnail: { size: [1045, 605], mode: outbound }
 
@@ -49,7 +58,33 @@ liip_imagine:
             # list of transformations to apply (the "filters")
             filters:
 
-                # create a thumbnail: set size to 290x180 and use the "outbound" mode
+                # create a thumbnail: set size to 400x400 and use the "outbound" mode
                 # to crop the image when the size ratio of the input differs
                 thumbnail: { size: [400, 400], mode: outbound }
+        
+        images_services:
+        
+            # list of transformations to apply (the "filters")
+            filters:
 
+                # create a thumbnail: set size to 1920x400 and use the "outbound" mode
+                # to crop the image when the size ratio of the input differs
+                thumbnail: { size: [1920, 400], mode: outbound }
+
+        images_slider:
+        
+            # list of transformations to apply (the "filters")
+            filters:
+
+                # create a thumbnail: set size to 1920x1080 and use the "outbound" mode
+                # to crop the image when the size ratio of the input differs
+                thumbnail: { size: [1920, 1080], mode: outbound }
+
+        logo_partenaire:
+        
+            # list of transformations to apply (the "filters")
+            filters:
+
+                # create a thumbnail: set size to 400x140 and use the "outbound" mode
+                # to crop the image when the size ratio of the input differs
+                thumbnail: { size: [400, 140], mode: outbound }
