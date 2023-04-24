@@ -11,6 +11,7 @@ use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\AdminBundle\Show\ShowMapper;
 use Vich\UploaderBundle\Form\Type\VichImageType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
+use Sonata\AdminBundle\Route\RouteCollection;
 
 final class ParametresAdmin extends AbstractAdmin
 {
@@ -80,5 +81,13 @@ final class ParametresAdmin extends AbstractAdmin
             ->add('instagram')
             ->add('nom')
             ;
+    }
+
+    protected function configureRoutes(RouteCollection $collection): void
+    {
+
+        /* Removing the create route will disable creating new entities. It will also
+        remove the 'Add new' button in the list view. */
+        $collection->remove('create');
     }
 }

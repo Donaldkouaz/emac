@@ -32,47 +32,47 @@ services:
         class: App\Admin\CategorieAdmin
         arguments: [~, App\Entity\Categorie, ~]
         tags:
-            - { name: sonata.admin, manager_type: orm, group: admin, label: Categorie }
+            - { name: sonata.admin, manager_type: orm, group: Projets, label: Categorie }
         public: true
 
     admin.projet:
         class: App\Admin\ProjetAdmin
         arguments: [~, App\Entity\Projet, ~]
         tags:
-            - { name: sonata.admin, manager_type: orm, group: admin, label: Projet }
+            - { name: sonata.admin, manager_type: orm, group: Projets, label: Projets }
         public: true
 
     admin.temoignages:
         class: App\Admin\TemoignagesAdmin
         arguments: [~, App\Entity\Temoignages, ~]
         tags:
-            - { name: sonata.admin, manager_type: orm, group: admin, label: Temoignages }
+            - { name: sonata.admin, manager_type: orm, group: Page à propos, label: Temoignages }
         public: true
 
     admin.faq:
         class: App\Admin\FaqAdmin
         arguments: [~, App\Entity\Faq, ~]
         tags:
-            - { name: sonata.admin, manager_type: orm, group: admin, label: Faq }
+            - { name: sonata.admin, manager_type: orm, group: Page à propos, label: Foire aux questions }
         public: true
 
     admin.service:
         class: App\Admin\ServiceAdmin
         arguments: [~, App\Entity\Service, ~]
         tags:
-            - { name: sonata.admin, manager_type: orm, group: admin, label: Service }
+            - { name: sonata.admin, manager_type: orm, group: Services, label: Services }
         public: true
 
     admin.parametres:
         class: App\Admin\ParametresAdmin
         arguments: [~, App\Entity\Parametres, ~]
         tags:
-            - { name: sonata.admin, manager_type: orm, group: admin, label: Parametres }
+            - { name: sonata.admin, manager_type: orm, group: Options du site, label: Parametres }
         public: true
 
     admin.partenaire:
         class: App\Admin\PartenaireAdmin
         arguments: [~, App\Entity\Partenaire, ~]
         tags:
-            - { name: sonata.admin, manager_type: orm, group: admin, label: Partenaire }
+            - { name: sonata.admin, manager_type: orm, group: Partenaires, label: Partenaires }
         public: true

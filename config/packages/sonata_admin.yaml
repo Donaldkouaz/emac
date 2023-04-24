@@ -9,8 +9,36 @@ sonata_admin:
 
         role_admin: ROLE_ADMIN
         role_super_admin: ROLE_SUPER_ADMIN
+
+        admin_permissions:
+
+            # Defaults:
+            - CREATE
+            - LIST
+            - DELETE
+            - UNDELETE
+            - EXPORT
+            - OPERATOR
+            - MASTER
+        object_permissions:
+
+            # Defaults:
+            - VIEW
+            - EDIT
+            - DELETE
+            - UNDELETE
+            - OPERATOR
+            - MASTER
+            - OWNER
     templates:
         edit: core/edit.html.twig
+
+    options:
+        html5_validate: true
+        title_mode: single_text
+
+        # Enable locking when editing an object, if the corresponding object manager supports it.
+        lock_protection: false
 sonata_block:
     blocks:
         sonata.admin.block.admin_list:

@@ -17,6 +17,20 @@ use Vich\UploaderBundle\Form\Type\VichImageType;
 
 final class ProjetAdmin extends AbstractAdmin
 {
+      /**
+ * @param string $role
+ * @return bool
+ */
+protected function checkUserHasRole(string $role): bool
+{
+
+    $securityContext = $this->getConfigurationPool()->getContainer()->get('security.authorization_checker');
+    try {
+        return $securityContext->isGranted($role);
+    } catch (AuthenticationCredentialsNotFoundException $e) {
+        return false;
+    }
+}
 
     protected function configureDatagridFilters(DatagridMapper $datagridMapper): void
     {
@@ -40,13 +54,22 @@ final class ProjetAdmin extends AbstractAdmin
             ->add('auteur')
             ->add('categorie', null, [
                 'editable' => true
-            ])
-            ->add('active', null, [
-                'editable' => true
-            ])
-            ->add('avant', null, [
-                'editable' => true
-            ])
+            ]);
+
+            if ($this->checkUserHasRole('ROLE_ACTIVATION')) {
+                $listMapper->add('active', null, [
+                    'editable' => true
+                ])
+                ->add('avant', null, [
+                    'editable' => true
+                ]);
+            }
+            else
+            {
+                $listMapper->add('active')
+                           ->add('avant');
+            }
+            $listMapper
             ->add('_action', null, [
                 'actions' => [
                     'show' => [],
@@ -76,14 +99,20 @@ final class ProjetAdmin extends AbstractAdmin
         } */
 
         $formMapper
+        
             ->add('nom')
             ->add('description', TextareaType::class, array('attr' => array('class' => 'ckeditor')))
             ->add('datecreation',DateType::class, array(
                 // renders it as a single text box
                 'widget' => 'single_text',
-            ))
-            ->add('active')
-            ->add('avant')
+            ));
+
+            if ($this->checkUserHasRole('ROLE_ACTIVATION')) {
+                $formMapper->add('active')
+                           ->add('avant');
+            }
+            
+            $formMapper
             ->add('auteur')
             ->add('image1File', VichImageType::class, [
                 'required' => false,
@@ -99,7 +128,7 @@ final class ProjetAdmin extends AbstractAdmin
                         max-width: 200px;'),])
             ->add('contact')
             ->add('categorie', ModelType::class, array(
-                'class' => 'App\Entity\categorie',
+                'class' => 'App\Entity\Categorie',
                 'property' => 'nom',
             ))
             
@@ -118,4 +147,6 @@ final class ProjetAdmin extends AbstractAdmin
             ->add('contact')
             ;
     }
+
+  
 }
